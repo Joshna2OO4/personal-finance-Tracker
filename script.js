@@ -6,33 +6,22 @@ const trans=document.querySelector("#trans");
 const form=document.querySelector("#form");
 const amount=document.querySelector("#amount");
 
-// const dummyData =[
-//     { id: 1, description : "Flower", amount: -20},
-//     { id: 2, description : "salary", amount: 35000},
-//     { id: 3, description : "book", amount: -10},
-//     { id: 4, description : "camara", amount: -150},
-//     { id: 5, description : "petrol", amount: -250},
-   
-// ];
-
-// let transactions = dummyData;
 
 const localStorageTrans=JSON.parse(localStorage.getItem ("trans"));
-let transactions = localStorage.getItem("trans")!==null?//in localstorage is getitems in this trans is there or not check if not there mens null means asign localstroage not there means give empty arry
+let transactions = localStorage.getItem("trans")!==null?
 localStorageTrans : [];
 
 function loadTransactionDetails(transaction){
     const sign=transaction.amount < 0 ? "-": "+";
     const item = document.createElement("li");
-    item.classList.add(transaction.amount<0? "exp":"inc");//transaction amount less then 0  means exp class add in not less then means add inc clss
-    item.innerHTML = `
+    item.classList.add(transaction.amount<0? "exp":"inc");
+     item.innerHTML = `
      ${transaction.description},
      <span>${sign}  ${Math.abs(transaction.amount)}</span>
      <button class="btn-del"  onclick="removeTrans( ${transaction.id})">x</button>
     `;
     trans.appendChild(item);
-   //console.log(transaction);
- //console.log(sign);
+   
 }
 
 
